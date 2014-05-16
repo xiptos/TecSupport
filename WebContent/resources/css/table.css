@@ -1,0 +1,56 @@
+@CHARSET "US-ASCII";
+
+.pois {
+	color: #333333;
+	width: 100%;
+	border-width: 1px;
+	border-color: #006363;
+	border-collapse: collapse;
+}
+
+.poisHeader {
+	background-color: #009999;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #006363;
+	text-align: left;
+}
+
+.oddRow {
+	background-color: #ffffff;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #006363;
+}
+
+.evenRow {
+	background-color: #ffffff;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #006363;
+}
+
+.column {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #006363;
+	text-align: left;
+}
+
+.columnHeader {
+	background-color: #009999;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #006363;
+	text-align: left;
+	color: white;
+}
+
+.columnFooter {
+	
+}

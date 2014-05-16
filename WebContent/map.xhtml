@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:m="http://code.google.com/p/gmaps4jsf/"
+	template="/templates/layout.xhtml">
+
+	<ui:define name="title">Tec Support Map</ui:define>
+	<ui:define name="content">
+		<script type="text/javascript"
+			src="https://maps.googleapis.com/maps/api/js?sensor=true">
+			
+		</script>
+
+		<h:form id="form">
+			<m:map width="1000px" latitude="10.1" longitude="10.1" height="500px"
+				zoom="2" actionListener="#{mapBean.addMarkerHere}"
+				submitOnClick="true">
+				<ui:repeat var="poi" value="#{mapBean.pois}">
+					<m:marker latitude="#{poi.latitude}" longitude="#{poi.longitude}" />
+
+				</ui:repeat>
+			</m:map>
+		</h:form>
+	</ui:define>
+</ui:composition>

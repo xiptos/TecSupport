@@ -1,0 +1,74 @@
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #333
+}
+
+p {
+	padding: 10px;
+}
+
+#page {
+	margin: 0 auto;
+	width: 1000px;
+}
+
+#header {
+	float: left;
+	height: 70px;
+	width: 1000px;
+	background: #5CCCCC;
+	line-height: 35px;
+	text-align: right;
+}
+
+#header h1 {
+	margin-right: 10px;
+}
+
+#content {
+	float: left;
+	width: 1000px;
+}
+
+#menubar {
+	width: 990px;
+	height: 35px;
+	float: left;
+	background: #006363;
+	color: white;
+	line-height: 35px;
+	padding-left: 10px;
+	margin-bottom: 20px;
+}
+
+#form_area form {
+	background: #009999;
+	color: white;
+}
+
+
+.tec_button {
+	width: 80px;	
+	border: 1px solid #006363;
+	border-left: 1px solid #006363;
+	border-top: 1px solid #006363;
+	background: #5CCCCC;
+	padding: 3px;
+}
+
+.tec_textbox { 
+    background-color: #5CCCCC; 
+    border: solid 1px #006363; 
+    outline: none; 
+    padding: 2px 2px; 
+} 
+.tec_textbox:hover { 
+    background-color: #FF0; 
+} 
+.tec_textbox:focus { 
+    background-color: white; 
+} 
+.tec_textbox:active { 
+    background-color: #EB8D00; 
+}

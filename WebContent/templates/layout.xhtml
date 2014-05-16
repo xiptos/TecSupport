@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title><ui:insert name="title">Page Title</ui:insert></title>
+	<h:outputStylesheet name="css/screen.css" />
+	<h:outputStylesheet name="css/table.css" />
+</h:head>
+<h:body>
+	<div id="page">
+		<div id="header">
+			<h1>
+				<ui:insert name="title">Default Page Title</ui:insert>
+			</h1>
+		</div>
+		<div id="menubar">
+			<ui:insert name="menubar">
+				<h:form>
+					<h:commandButton styleClass="tec_button" value="#{msg.list}"
+						action="list" />
+					<h:commandButton styleClass="tec_button" value="#{msg.map}"
+						action="map" />
+				</h:form>
+			</ui:insert>
+		</div>
+		<div id="content">
+			<ui:insert name="content">Default value for Content</ui:insert>
+		</div>
+	</div>
+</h:body>
+</html>

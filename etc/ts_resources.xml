@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//Sun Microsystems Inc.//DTD Application Server 9.0 Domain//EN" "/opt/glassfish/lib/dtds/sun-resources_1_3.dtd">
+
+	<!--
+		(http://blogs.sun.com/JagadishPrasath/)
+		1) copy the jdbc-driver to AS_INSTALL_DIR/domains/<DOMAIN_NAME>/lib/ext
+		2) restart appserver
+		3) edit the appropriate jdbc-driver template to fill username, password, hostname, databasename, portnumber etc.,
+		3a) [Optional] select appropriate resource-type & datasource-classname. Templates are provided with
+		the list of datasource-classnames for respective resource-types of the jdbc-vendor, if available.
+		4) asadmin add-resources -p <ADMINPORT> jdbc-driver-template.xml (eg: AS_INSTALL_DIR/lib/install/templates/resources/jdbc/javadb_type4_datasource.xml)
+		5) asadmin ping-connection-pool connection-pool-name
+	-->
+
+<resources>
+
+	<jdbc-connection-pool name="ts_pool" datasource-classname="org.apache.derby.jdbc.ClientDataSource"
+		res-type="javax.sql.DataSource">
+		<property name="DatabaseName" value="tsdb" />
+		<property name="ConnectionAttributes" value=";create=true" />
+		<property name="PortNumber" value="1527" />
+		<property name="ServerName" value="localhost" />
+		<property name="User" value="APP" />
+		<property name="Password" value="APP" />
+	</jdbc-connection-pool>
+
+	<jdbc-resource enabled="true" jndi-name="jdbc/tsdb" object-type="user"
+		pool-name="ts_pool" />
+</resources>

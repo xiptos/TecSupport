@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/layout.xhtml">
+
+	<ui:define name="title">Tec Support</ui:define>
+	<ui:define name="content">
+		<div id="form_area">
+			<h:form id="poi_form">
+				<h:panelGrid columns="2" rendered="#{poiBean.formVisible}">
+					<h:commandButton styleClass="tec_button" value="#{msg.hide_form}"
+						action="#{poiBean.toggleFormVisible}" />
+					<h:commandButton styleClass="tec_button" value="#{msg.create}"
+						action="#{poiBean.create}">
+						<f:ajax execute="poi_form" render=":poitableform" />
+					</h:commandButton>
+				</h:panelGrid>
+				<h:commandButton styleClass="tec_button" value="#{msg.show_form}"
+					action="#{poiBean.toggleFormVisible}"
+					rendered="#{not poiBean.formVisible}" />
+
+				<h:panelGrid columns="2" rendered="#{poiBean.formVisible}">
+					<h:outputLabel value="#{msg.title}:" />
+					<h:inputText styleClass="tec_textbox" value="#{poiBean.title}" />
+					<h:outputLabel value="#{msg.latitude}:" />
+					<h:inputText styleClass="tec_textbox" value="#{poiBean.latitude}">
+						<f:convertNumber />
+					</h:inputText>
+					<h:outputLabel value="#{msg.longitude}:" />
+					<h:inputText styleClass="tec_textbox" value="#{poiBean.longitude}">
+						<f:convertNumber />
+					</h:inputText>
+					<h:outputLabel value="#{msg.descr}:" />
+					<h:inputTextarea styleClass="tec_textbox" value="#{poiBean.descr}"
+						cols="20" rows="5" />
+				</h:panelGrid>
+			</h:form>
+		</div>
+		<h:form>
+			<h:dataTable value="#{poiBean.pois}" var="poi"
+				styleClass="pois" headerClass="poisHeader"
+				rowClasses="oddRow,evenRow"
+				columnClasses="column,column,column,column,column">
+				<h:column headerClass="columnHeader" footerClass="columnFooter">
+					<f:facet name="header">#{msg.title}</f:facet>
+					<h:commandLink value="#{poi.title}" action="#{poiBean.edit(poi)}"
+						rendered="#{poiBean.editingPoi!=poi}"/>
+					<h:inputText value="#{poiBean.editingPoi.title}"
+						rendered="#{poiBean.editingPoi==poi}" />
+				</h:column>
+				<h:column headerClass="columnHeader" footerClass="columnFooter">
+					<f:facet name="header">#{msg.visited}</f:facet>
+					<h:selectBooleanCheckbox value="#{poi.visited}" disabled="true" rendered="#{poiBean.editingPoi!=poi}"/>
+					<h:selectBooleanCheckbox value="#{poiBean.editingPoi.visited}" rendered="#{poiBean.editingPoi==poi}"/>
+				</h:column>
+				<h:column headerClass="columnHeader" footerClass="columnFooter">
+					<f:facet name="header">#{msg.latitude}</f:facet>
+					<h:outputText value="#{poi.latitude}"
+						rendered="#{poiBean.editingPoi!=poi}">
+						<f:convertNumber />
+					</h:outputText>
+					<h:inputText value="#{poiBean.editingPoi.latitude}"
+						rendered="#{poiBean.editingPoi==poi}" size="10" />
+
+				</h:column>
+				<h:column headerClass="columnHeader" footerClass="columnFooter">
+					<f:facet name="header">#{msg.longitude}</f:facet>
+					<h:outputText value="#{poi.longitude}"
+						rendered="#{poiBean.editingPoi!=poi}">
+						<f:convertNumber />
+					</h:outputText>
+					<h:inputText value="#{poiBean.editingPoi.longitude}"
+						rendered="#{poiBean.editingPoi==poi}" size="10">
+						<f:convertNumber />
+					</h:inputText>
+				</h:column>
+
+				<h:column headerClass="columnHeader" footerClass="columnFooter">
+					<f:facet name="header">#{msg.descr}</f:facet>
+					<h:outputText value="#{poi.descr}"
+						rendered="#{poiBean.editingPoi!=poi}" />
+					<h:inputText value="#{poiBean.editingPoi.descr}"
+						rendered="#{poiBean.editingPoi==poi}" size="30" />
+
+				</h:column>
+				<h:column headerClass="columnHeader" footerClass="columnFooter">
+					<f:facet name="header">#{msg.action}</f:facet>
+					<h:panelGrid>
+						<h:commandLink value="#{msg.remove}"
+							action="#{poiBean.remove(poi)}"
+							onclick="if (!confirm('Remove #{poi.title}?')) return false"
+							rendered="#{poiBean.editingPoi!=poi}" />
+						<h:commandLink value="#{msg.cancel}" action="#{poiBean.cancel}"
+							rendered="#{poiBean.editingPoi==poi}" />
+						<h:commandLink value="#{msg.save}" action="#{poiBean.save}"
+							rendered="#{poiBean.editingPoi==poi}" />
+					</h:panelGrid>
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
